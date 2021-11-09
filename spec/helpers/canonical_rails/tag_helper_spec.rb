@@ -262,6 +262,7 @@ describe CanonicalRails::TagHelper, type: :helper do
 
     describe 'with internationalization enabled' do
       before(:each) do
+        CanonicalRails.port = 3000
         CanonicalRails.enable_internationalization = true
         CanonicalRails.default_locale = 'en'
         CanonicalRails.supported_locales = ['en', 'de']
@@ -280,9 +281,9 @@ describe CanonicalRails::TagHelper, type: :helper do
       end
 
       it 'should output alternate, hreflang links on canonical pages' do
-        expect(helper.canonical_tag).to include('<link href="http://www.mywebstore.com/en/our_resources" rel="alternate" hreflang="en" /')
-        expect(helper.canonical_tag).to include('<link href="http://www.mywebstore.com/de/our_resources" rel="alternate" hreflang="de" /')
-        expect(helper.canonical_tag).to include('<link href="http://www.mywebstore.com/our_resources" rel="canonical" />')
+        expect(helper.canonical_tag).to include('<link href="http://www.mywebstore.com:3000/en/our_resources" rel="alternate" hreflang="en" /')
+        expect(helper.canonical_tag).to include('<link href="http://www.mywebstore.com:3000/de/our_resources" rel="alternate" hreflang="de" /')
+        expect(helper.canonical_tag).to include('<link href="http://www.mywebstore.com:3000/our_resources" rel="canonical" />')
       end
     end
   end

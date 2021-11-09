@@ -63,7 +63,7 @@ module CanonicalRails
       default_ports = { 'https://' => 443, 'http://' => 80 }
       port = port.present? && port.to_i != default_ports[canonical_protocol] ? ":#{port}" : ''
       locale = locale ? "/#{locale}" : ''
-      raw "#{canonical_protocol}#{host}#{locale}#{port}#{path_without_html_extension}#{trailing_slash_config(force_trailing_slash)}#{allowed_query_string}"
+      raw "#{canonical_protocol}#{host}#{port}#{locale}#{path_without_html_extension}#{trailing_slash_config(force_trailing_slash)}#{allowed_query_string}"
     end
 
     def canonical_path(force_trailing_slash = nil)
